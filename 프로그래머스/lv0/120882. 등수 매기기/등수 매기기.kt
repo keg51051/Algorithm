@@ -1,0 +1,3 @@
+class Solution {
+    fun solution(score: Array<IntArray>) = score.map(IntArray::average).map { score.map(IntArray::average).sortedDescending().indexOf(it) + 1 }.toIntArray()
+}
