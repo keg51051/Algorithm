@@ -1,10 +1,3 @@
 class Solution {
-    fun solution(myString: String): IntArray {
-        var answer: IntArray = intArrayOf()
-        var list = myString.split("x")
-        for (i in list) {
-            answer += i.length
-        }
-        return answer
-    }
+    fun solution(myString: String) = myString.split("x").map { it.length }
 }
