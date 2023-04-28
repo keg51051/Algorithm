@@ -19,7 +19,7 @@ class Solution {
             }
         }
         
-        val max = score.max()
+        val max = score.sortedDescending().first()
         
         if (max == score[0]) {
             list.add(1)
