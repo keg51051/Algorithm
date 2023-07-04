@@ -23,7 +23,7 @@ fun main() {
         }
     }
 
-    println(answer)
+    bw.write(answer.toString())
 
 
     br.close()
