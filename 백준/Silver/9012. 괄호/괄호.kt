@@ -16,7 +16,7 @@ fun main() {
     }
 
     for (i in list.indices) {
-        bw.write(isValid(list[i]).toString() + "\n")
+        bw.write(isValid(list[i]) + "\n")
     }
 
     br.close()
