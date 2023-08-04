@@ -1,15 +1,6 @@
 fun main() = with(System.`in`.bufferedReader()) {
-    var yArr = IntArray(28)
-    var nArr = intArrayOf()
-    repeat(28) {
-        yArr += readLine().toInt()
-    }
-
-    for (i in 1..30) {
-        if (!yArr.contains(i)) {
-            nArr += i
-        }
-    }
+    val yArr = List(28) { readLine()!!.toInt() }
+    val nArr = (1..30).filterNot { yArr.contains(it) }
     println(nArr.min())
     print(nArr.max())
 }
