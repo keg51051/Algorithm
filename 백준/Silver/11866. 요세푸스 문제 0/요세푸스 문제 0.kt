@@ -14,7 +14,7 @@ fun main() {
     val n = st.nextToken().toInt()
     val k = st.nextToken().toInt() - 1
 
-    val list = (1..n).map { it }.toMutableList()
+    val list = MutableList(n) { it + 1 }
 
     sb.append("<")
     var idx = k
