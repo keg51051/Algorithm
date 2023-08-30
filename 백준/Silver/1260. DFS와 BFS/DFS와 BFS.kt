@@ -8,14 +8,16 @@ fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
 
     val (n,m,v) = br.readLine().split(" ").map { it.toInt() }
-    val nodes = MutableList(n+1) { MutableList<Int>(n+1) {0} }
+    val nodes = MutableList(n+1) { mutableListOf<Int>() }
     var visited = BooleanArray(n+1)
 
     repeat(m) {
         val (a,b) = br.readLine().split(" ").map { it.toInt() }
-        nodes[a][b] = 1
-        nodes[b][a] = 1
+        nodes[a].add(b)
+        nodes[b].add(a)
     }
+
+    nodes.forEach { it.sort() }
 
     dfs(nodes, visited, v)
     visited = BooleanArray(n+1)
@@ -27,8 +29,8 @@ fun main() {
 fun dfs(nodes: MutableList<MutableList<Int>>, visited: BooleanArray, node: Int) {
     visited[node] = true
     print("$node ")
-    for (i in nodes.indices) {
-        if (nodes[node][i] == 1 && !visited[i]) {
+    for (i in nodes[node]) {
+        if (!visited[i]) {
             dfs(nodes, visited, i)
         }
     }
@@ -40,11 +42,11 @@ fun bfs(nodes: MutableList<MutableList<Int>>, visited: BooleanArray, node: Int) 
     visited[node] = true
     println()
 
-    while(!q.isEmpty()) {
+    while(q.isNotEmpty()) {
         val temp = q.poll()
         print("$temp ")
-        for (i in nodes.indices) {
-            if (nodes[temp][i] == 1 && !visited[i]) {
+        for (i in nodes[temp]) {
+            if (!visited[i]) {
                 q.offer(i)
                 visited[i] = true
             }
