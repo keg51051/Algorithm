@@ -3,15 +3,17 @@ import java.io.InputStreamReader
 
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
-
     val n = br.readLine().toInt()
-    val answer = IntArray(1001) { 1 }
+    val dp = IntArray(1001)
 
-    for (i in 2..n) {
-        answer[i] = (answer[i-1] + answer[i-2]) % 10007
+    dp[1] = 1
+    dp[2] = 2
+
+    for (i in 3..n) {
+        dp[i] = (dp[i-1] + dp[i-2]) % 10007
     }
 
-    print(answer[n])
+    print(dp[n])
 
     br.close()
 }
