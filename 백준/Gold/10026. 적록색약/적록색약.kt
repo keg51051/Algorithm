@@ -16,31 +16,28 @@ fun main() {
 
     var section = 0
 
-    fun dfs(x: Int, y: Int): Boolean {
-        if (visited[x][y]) {
-            return false
-        }
-
+    fun dfs(x: Int, y: Int) {
         visited[x][y] = true
 
         for (d in 0..<4) {
             val nx = x + dx[d]
             val ny = y + dy[d]
 
-            if (nx in 0..<n && ny in 0..<n && grid[nx][ny] == grid[x][y]) {
+            if (nx in 0..<n && ny in 0..<n && grid[nx][ny] == grid[x][y] && !visited[nx][ny]) {
                 dfs(nx, ny)
             }
         }
-
-        return true
     }
 
 
     for (i in 0..<n) {
         for (j in 0..<n) {
-            if(dfs(i, j)) section += 1
+            if (!visited[i][j]) {
+                dfs(i, j)
+                section += 1
+            }
             // make the grid color blindness R => G or G => R
-            if (grid[i][j] == 'R') grid[i][j] = 'G' 
+            if (grid[i][j] == 'R') grid[i][j] = 'G'
         }
     }
 
@@ -52,7 +49,10 @@ fun main() {
 
     for (i in 0..<n) {
         for (j in 0..<n) {
-            if(dfs(i, j)) section += 1
+            if (!visited[i][j]) {
+                dfs(i, j)
+                section += 1
+            }
         }
     }
 
