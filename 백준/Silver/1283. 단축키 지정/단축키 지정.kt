@@ -4,7 +4,7 @@ import java.io.InputStreamReader
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
     val n = br.readLine().toInt()
-    val set = mutableSetOf<Char>()
+    val set = hashSetOf<Char>()
 
     loop@ for (i in 0..<n) {
         val command = br.readLine().split(" ").toMutableList()
