@@ -5,28 +5,22 @@ fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
     val G = br.readLine().toInt()
     var s = 1
-    var e = 1
+    var e = 2
     val answer = mutableListOf<Int>()
 
-    while (true) {
-        if (e * e - s * s == G) {
+    while (s < e) {
+        val temp = e * e - s * s
+
+        if (temp == G) {
             answer.add(e)
         }
 
-        if (e - s == 1 && e * e - s * s > G) break
-
-        if (e * e - s * s > G) {
+        if (temp > G) {
             s += 1
         } else {
             e += 1
         }
     }
 
-    if (answer.isEmpty()) {
-        print(-1)
-    } else {
-        answer.forEach {
-            println(it)
-        }
-    }
+    if (answer.isEmpty()) print(-1) else answer.forEach { println(it) }
 }
