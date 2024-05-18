@@ -10,7 +10,8 @@ public class Main {
         ArrayList<Character> alphabet = new ArrayList<>();
         int L = Integer.parseInt(br.readLine());
         String str = br.readLine();
-        int answer = 0;
+        long answer = 0;
+        long pow = 1;
 
         for (int i = 0; i < 26; i++) {
             alphabet.add((char)(97+i));
@@ -19,13 +20,10 @@ public class Main {
         for (int j = 0; j < str.length(); j++) {
             int index = alphabet.indexOf(str.charAt(j)) + 1;
 
-            if (j == 0) {
-                answer += index;
-            } else {
-                answer += (int) (index * Math.pow(31, j));
-            }
+            answer += index * pow;
+            pow = (pow * 31) % 1234567891;
         }
 
-        System.out.println(answer);
+        System.out.println(answer % 1234567891);
     }
 }
